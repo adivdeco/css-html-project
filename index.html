@@ -40,9 +40,9 @@
     <main>
         <section class="hero">
             <div class="container hero-left">
-                <span class="kicker">New Batch</span>
-                <h1 class="title-gradient">STRIKE — <span class="typing">Where students rise and design strikes
-                        first</span></h1>
+                <span class="kicker">New Launched</span>
+                <h1 class="title-gradient">STRIKE — <span class="typing">Where students rise and <br> design strikes
+                        first </span></h1>
                 <p class="lead">A pure HTML & CSS showcase built to push the limits of what you can create without
                     JavaScript. Smooth gradients, morphing shapes, and attention to detail — show judges you master the
                     craft.</p>
@@ -58,26 +58,106 @@
                 </div>
             </div>
 
+        </section>
+        <!-- main part k niche walla ... -->
 
-            <br>
-            <!-- main part k niche walla ... -->
+        <!-- <div class="container hero-right center strike-area">
+            <div class="blob a"></div>
+            <div class="blob b"></div>
 
-            <div class="container hero-right center strike-area">
-                <div class="blob a"></div>
-                <div class="blob b"></div>
-
-                <div class="ring" role="img" aria-label="Rotating strike emblem">
-                    <div class="inner">
-                        <div class="strike-logo center">
-                            STRIKE
-                            <small>Student Edition</small>
-                        </div>
+            <div class="ring" role="img" aria-label="Rotating strike emblem">
+                <div class="inner">
+                    <div class="strike-logo center">
+                        STRIKE
+                        <small>Student Edition</small>
                     </div>
                 </div>
-
             </div>
 
-        </section>
+        </div> -->
+
+        <div class="container hero-right center strike-area">
+            <!-- Concept 1: Floating Tech Elements -->
+            <div class="floating-tech">
+                <div class="tech-element code-bracket">*</div>
+                <div class="tech-element css-icon">*</div>
+                <div class="tech-element html-tag">••</div>
+                <div class="tech-element bracket">•</div>
+                <div class="tech-element curly">°̐</div>
+                <div class="tech-element angle">°</div>
+            </div>
+
+            <!-- Concept 2: CSS-only Particle System -->
+            <div class="css-particles">
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+            </div>
+
+            <!-- Concept 3: Enhanced Blob System -->
+            <div class="blob a"></div>
+            <div class="blob b"></div>
+            <div class="blob c"></div>
+            <div class="blob d"></div>
+
+            <!-- Concept 4: Pulsing Core with Rings -->
+            <div class="energy-core">
+                <!-- <div class="core-pulse"></div> -->
+                <div class="core-rings">
+                    <div class="ring-ring ring-1"></div>
+                    <div class="ring-ring ring-2"></div>
+                    <div class="ring-ring ring-3"></div>
+                    <div class="ring-ring ring-4"></div>
+                </div>
+            </div>
+
+            <!-- Concept 5: Binary Rain Effect -->
+            <div class="binary-rain">
+                <div class="binary-column">
+                    <span>1</span><span>0</span><span>1</span><span>1</span><span>0</span>
+                    <span>0</span><span>1</span><span>0</span><span>1</span><span>1</span>
+                </div>
+                <div class="binary-column">
+                    <span>0</span><span>1</span><span>0</span><span>0</span><span>1</span>
+                    <span>1</span><span>0</span><span>1</span><span>0</span><span>0</span>
+                </div>
+                <div class="binary-column">
+                    <span>1</span><span>1</span><span>0</span><span>1</span><span>0</span>
+                    <span>0</span><span>1</span><span>1</span><span>0</span><span>1</span>
+                </div>
+            </div>
+
+            <!-- Main Ring with Hover Effects -->
+            <div class="ring" role="img" aria-label="Rotating strike emblem">
+                <div class="inner">
+                    <div class="strike-logo center">
+                        STRIKE
+                        <small>Student Edition</small>
+                        <div class="logo-sparkle"></div>
+                    </div>
+                </div>
+                <div class="ring-orbits">
+                    <div class="orbit orbit-1">
+                        <div class="orbiting-dot"></div>
+                    </div>
+                    <div class="orbit orbit-2">
+                        <div class="orbiting-dot"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Hover Zones -->
+            <div class="hover-zone left-zone"></div>
+            <div class="hover-zone right-zone"></div>
+        </div>
+
 
         <section id="features" class="features container">
             <h2 style="font-family:Orbitron;font-size:1.4rem;margin-bottom:1rem">Showcase Features</h2>
@@ -195,5 +275,75 @@
     </main>
 
 </body>
+<!-- <script>
+    // Simple particle network for the canvas
+    document.addEventListener('DOMContentLoaded', function () {
+        const canvas = document.querySelector('.particle-network');
+        const ctx = canvas.getContext('2d');
+
+        // Set canvas size
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+
+        const particles = [];
+        const particleCount = 30;
+
+        // Create particles
+        for (let i = 0; i < particleCount; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                vx: (Math.random() - 0.5) * 0.5,
+                vy: (Math.random() - 0.5) * 0.5,
+                radius: Math.random() * 2 + 1,
+                color: `rgba(${Math.random() > 0.5 ? '0, 255, 213' : '255, 45, 149'}, ${Math.random() * 0.3 + 0.1})`
+            });
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Update and draw particles
+            particles.forEach(particle => {
+                particle.x += particle.vx;
+                particle.y += particle.vy;
+
+                // Bounce off walls
+                if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
+                if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
+
+                // Draw particle
+                ctx.beginPath();
+                ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+                ctx.fillStyle = particle.color;
+                ctx.fill();
+            });
+
+            // Draw connections
+            particles.forEach((a, i) => {
+                particles.forEach((b, j) => {
+                    if (i !== j) {
+                        const dx = a.x - b.x;
+                        const dy = a.y - b.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+
+                        if (distance < 100) {
+                            ctx.beginPath();
+                            ctx.strokeStyle = `rgba(255, 255, 255, ${0.1 * (1 - distance / 100)})`;
+                            ctx.lineWidth = 0.5;
+                            ctx.moveTo(a.x, a.y);
+                            ctx.lineTo(b.x, b.y);
+                            ctx.stroke();
+                        }
+                    }
+                });
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    });
+</script> -->
 
 </html>
