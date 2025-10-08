@@ -1,0 +1,726 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>STRIKE — Loading</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-1: #02000a;
+            --bg-2: #040018;
+            --neon-cyan: #00fff0;
+            --neon-pink: #ff00c8;
+            --neon-purple: #b400ff;
+            --glass: rgba(255, 255, 255, 0.04);
+            --loader-time: 4.6s;
+            /* total visible loader time before fade */
+        }
+
+        /* Basic reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        html,
+        body {
+            height: 100%;
+            background:
+                radial-gradient(1200px 600px at 10% 10%, rgba(180, 0, 255, 0.06), transparent 10%),
+                radial-gradient(800px 400px at 90% 90%, rgba(0, 255, 213, 0.03), transparent 8%),
+                linear-gradient(180deg, var(--bg-1), var(--bg-2));
+            color: #e6faff;
+            font-family: 'Share Tech Mono', monospace;
+            overflow: hidden;
+        }
+
+        /* ===== FULL SCREEN LOADER ===== */
+        .loader {
+            position: fixed;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            z-index: 9999;
+            pointer-events: none;
+            /* fade out after the sequence */
+            animation: loaderFade .8s ease var(--loader-time) forwards;
+        }
+
+        /* BACKGROUND STARFIELD (subtle) */
+        .stars {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            opacity: 0.9;
+            background-image:
+                radial-gradient(1px 1px at 10% 20%, rgba(255, 255, 255, 0.9) 0, transparent 60%),
+                radial-gradient(1px 1px at 30% 40%, rgba(255, 255, 255, 0.8) 0, transparent 60%),
+                radial-gradient(1px 1px at 60% 10%, rgba(255, 255, 255, 0.7) 0, transparent 60%),
+                radial-gradient(0.8px 0.8px at 80% 70%, rgba(255, 255, 255, 0.75) 0, transparent 60%),
+                radial-gradient(0.9px 0.9px at 20% 80%, rgba(255, 255, 255, 0.6) 0, transparent 60%);
+            background-size: 1200px 1200px, 1000px 1000px, 1400px 1400px, 800px 800px, 600px 600px;
+            animation: starsMove 26s linear infinite;
+            filter: blur(.4px);
+            mix-blend-mode: screen;
+        }
+
+        @keyframes starsMove {
+            to {
+                background-position: 800px -600px, -400px 900px, 1200px 600px, -800px -200px, 100px 1200px;
+            }
+        }
+
+        /* HOLOGRAPHIC GRID (perspective floor feel) */
+        .grid-floor {
+            position: absolute;
+            left: 50%;
+            bottom: -10vh;
+            width: 140vw;
+            height: 70vh;
+            transform: translateX(-50%) rotateX(62deg) translateZ(0);
+            background-image:
+                linear-gradient(transparent 0, rgba(255, 255, 255, 0.02) 1px),
+                linear-gradient(90deg, transparent 0, rgba(255, 255, 255, 0.02) 1px);
+            background-size: 40px 40px, 40px 40px;
+            opacity: 0.12;
+            filter: blur(2px);
+            animation: gridFlow 12s linear infinite;
+            z-index: 1;
+            mix-blend-mode: screen;
+        }
+
+        @keyframes gridFlow {
+            from {
+                background-position: 0 0, 0 0
+            }
+
+            to {
+                background-position: 600px 0, -600px 0
+            }
+        }
+
+        /* SCANLINES (subtle vertical scan) */
+        .scanlines {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            background-image: repeating-linear-gradient(180deg, rgba(0, 0, 0, 0) 0 6px, rgba(0, 0, 0, 0.03) 6px 7px);
+            opacity: .08;
+            pointer-events: none;
+        }
+
+        /* GLITCH RINGS (three rotating neon rings) */
+        .rings {
+            position: absolute;
+            z-index: 3;
+            width: 720px;
+            height: 720px;
+            display: grid;
+            place-items: center;
+            pointer-events: none;
+        }
+
+        .ring {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(10px);
+            mix-blend-mode: screen;
+            opacity: .85;
+            transform-origin: center;
+        }
+
+        .ring.r1 {
+            width: 520px;
+            height: 520px;
+            background: conic-gradient(from 0deg, var(--neon-cyan), transparent 25%, var(--neon-pink));
+            animation: spin1 8.5s linear infinite;
+        }
+
+        .ring.r2 {
+            width: 380px;
+            height: 380px;
+            background: conic-gradient(from 90deg, var(--neon-pink), transparent 25%, var(--neon-purple));
+            animation: spin2 11s linear reverse infinite;
+            filter: blur(6px);
+            opacity: .9;
+        }
+
+        .ring.r3 {
+            width: 240px;
+            height: 240px;
+            background: conic-gradient(from 180deg, var(--neon-purple), transparent 25%, var(--neon-cyan));
+            animation: spin3 6.8s linear infinite;
+            filter: blur(4px);
+            opacity: 1;
+        }
+
+        @keyframes spin1 {
+            to {
+                transform: rotate(360deg)
+            }
+        }
+
+        @keyframes spin2 {
+            to {
+                transform: rotate(-360deg)
+            }
+        }
+
+        @keyframes spin3 {
+            to {
+                transform: rotate(360deg)
+            }
+        }
+
+        /* OUTPUT CONTENT (centerpiece) */
+        .card {
+            position: relative;
+            z-index: 6;
+            width: min(900px, 92%);
+            max-width: 1000px;
+            padding: 2.2rem 2.4rem;
+            border-radius: 18px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(8px) saturate(120%);
+            display: grid;
+            gap: 1.2rem;
+            align-items: center;
+            justify-items: center;
+            pointer-events: none;
+            text-align: center;
+        }
+
+        /* GLITCH TITLE */
+        .glitch {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(48px, 8vw, 120px);
+            letter-spacing: 6px;
+            line-height: 0.85;
+            color: transparent;
+            background: linear-gradient(90deg, var(--neon-pink), var(--neon-cyan), var(--neon-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            position: relative;
+            display: inline-block;
+            padding: 0 6px;
+            text-transform: uppercase;
+            transform: translateZ(0);
+        }
+
+        /* two color layers for glitch */
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            opacity: .9;
+            pointer-events: none;
+            mix-blend-mode: screen;
+        }
+
+        .glitch::before {
+            background: linear-gradient(90deg, var(--neon-cyan), transparent);
+            clip-path: polygon(0 0, 100% 0, 100% 40%, 0 45%);
+            transform: translate(-6px, 2px);
+            animation: gl1 2.8s linear infinite;
+            text-shadow: 0 0 12px var(--neon-cyan);
+        }
+
+        .glitch::after {
+            background: linear-gradient(90deg, var(--neon-pink), transparent);
+            clip-path: polygon(0 60%, 100% 55%, 100% 100%, 0 100%);
+            transform: translate(6px, -2px);
+            animation: gl2 3.2s linear infinite;
+            text-shadow: 0 0 10px var(--neon-pink);
+        }
+
+        @keyframes gl1 {
+            0% {
+                transform: translate(-6px, 2px) skewX(0)
+            }
+
+            8% {
+                transform: translate(8px, -4px) skewX(-6deg)
+            }
+
+            14% {
+                transform: translate(-10px, 6px) skewX(4deg)
+            }
+
+            20% {
+                transform: translate(0, 0)
+            }
+
+            100% {
+                transform: translate(-6px, 2px)
+            }
+        }
+
+        @keyframes gl2 {
+            0% {
+                transform: translate(6px, -2px)
+            }
+
+            10% {
+                transform: translate(-6px, 3px) skewX(5deg)
+            }
+
+            18% {
+                transform: translate(6px, -6px)
+            }
+
+            22% {
+                transform: translate(0, 0)
+            }
+
+            100% {
+                transform: translate(6px, -2px)
+            }
+        }
+
+        /* SUBTITLE: typing effect + blinking cursor */
+        .subtitle {
+            font-size: 1rem;
+            color: var(--neon-cyan);
+            opacity: .95;
+            display: flex;
+            gap: .6rem;
+            align-items: center;
+            justify-content: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .type {
+            overflow: hidden;
+            display: inline-block;
+            white-space: nowrap;
+            max-width: 0ch;
+            animation: typeIn 3.6s steps(26, end) forwards;
+            -webkit-mask-image: linear-gradient(#000 0 0);
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            height: 18px;
+            background: var(--neon-cyan);
+            margin-left: 6px;
+            animation: blink 700ms steps(2, start) infinite;
+            transform-origin: center;
+            border-radius: 1px;
+        }
+
+        @keyframes typeIn {
+            0% {
+                max-width: 0ch;
+                opacity: 1;
+            }
+
+            100% {
+                max-width: 24ch;
+                opacity: 1;
+            }
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0
+            }
+        }
+
+        /* PROGRESS BAR + PERCENT STEPS (visual only) */
+        .progress-wrap {
+            width: min(680px, 84%);
+            margin-top: 14px;
+            position: relative;
+        }
+
+        .progress {
+            width: 100%;
+            height: 12px;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.02));
+            border-radius: 999px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+        }
+
+        .bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink));
+            box-shadow: 0 6px 30px rgba(0, 255, 240, 0.08);
+            animation: barLoad calc(var(--loader-time) - 0.6s) linear forwards;
+            transition: width .3s;
+        }
+
+        @keyframes barLoad {
+            from {
+                width: 0%
+            }
+
+            60% {
+                width: 72%
+            }
+
+            85% {
+                width: 92%
+            }
+
+            to {
+                width: 100%
+            }
+        }
+
+        /* Percent text cycling (0, 25, 50, 75, 100) - visual only */
+        .percent {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .9rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.85);
+            mix-blend-mode: screen;
+        }
+
+        .percent span {
+            position: absolute;
+            opacity: 0;
+            transform: translateY(0);
+        }
+
+        /* each span visible during a slice of the loader time */
+        .percent span.p0 {
+            animation: showPct calc(var(--loader-time) - 0.6s) linear forwards;
+        }
+
+        .percent span.p25 {
+            animation: showPct2 calc(var(--loader-time) - 0.6s) linear forwards;
+        }
+
+        .percent span.p50 {
+            animation: showPct3 calc(var(--loader-time) - 0.6s) linear forwards;
+        }
+
+        .percent span.p75 {
+            animation: showPct4 calc(var(--loader-time) - 0.6s) linear forwards;
+        }
+
+        .percent span.p100 {
+            animation: showPct5 calc(var(--loader-time) - 0.6s) linear forwards;
+        }
+
+        @keyframes showPct {
+            0% {
+                opacity: 1
+            }
+
+            20% {
+                opacity: 1
+            }
+
+            25% {
+                opacity: 0
+            }
+
+            100% {
+                opacity: 0
+            }
+        }
+
+        @keyframes showPct2 {
+            0% {
+                opacity: 0
+            }
+
+            25% {
+                opacity: 1
+            }
+
+            45% {
+                opacity: 1
+            }
+
+            50% {
+                opacity: 0
+            }
+
+            100% {
+                opacity: 0
+            }
+        }
+
+        @keyframes showPct3 {
+            0% {
+                opacity: 0
+            }
+
+            50% {
+                opacity: 0
+            }
+
+            50.5% {
+                opacity: 1
+            }
+
+            70% {
+                opacity: 1
+            }
+
+            75% {
+                opacity: 0
+            }
+
+            100% {
+                opacity: 0
+            }
+        }
+
+        @keyframes showPct4 {
+            0% {
+                opacity: 0
+            }
+
+            75% {
+                opacity: 0
+            }
+
+            75.5% {
+                opacity: 1
+            }
+
+            90% {
+                opacity: 1
+            }
+
+            95% {
+                opacity: 0
+            }
+
+            100% {
+                opacity: 0
+            }
+        }
+
+        @keyframes showPct5 {
+            0% {
+                opacity: 0
+            }
+
+            95% {
+                opacity: 0
+            }
+
+            95.5% {
+                opacity: 1
+            }
+
+            100% {
+                opacity: 1
+            }
+        }
+
+        /* small techno meta line below progress */
+        .meta {
+            margin-top: 8px;
+            font-size: .75rem;
+            color: rgba(255, 255, 255, 0.6);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* small spark particles (animated blips) */
+        .sparks {
+            position: absolute;
+            inset: 0;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .sparks::after {
+            content: "";
+            position: absolute;
+            left: 10%;
+            top: 20%;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--neon-pink);
+            box-shadow:
+                200px 70px 0 0 var(--neon-cyan),
+                520px 220px 0 0 var(--neon-pink),
+                320px 480px 0 0 var(--neon-purple),
+                120px 560px 0 0 var(--neon-cyan),
+                780px 120px 0 0 var(--neon-pink),
+                420px 60px 0 0 var(--neon-purple);
+            opacity: .0;
+            filter: blur(.3px);
+            animation: sparksAnim 3.6s linear infinite;
+        }
+
+        @keyframes sparksAnim {
+            0% {
+                opacity: 0;
+                transform: scale(.2) translateY(0)
+            }
+
+            30% {
+                opacity: .9;
+                transform: scale(1) translateY(-6px)
+            }
+
+            60% {
+                opacity: .6;
+                transform: scale(.9) translateY(2px)
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(.3) translateY(0)
+            }
+        }
+
+        /* LOADER fade out */
+        @keyframes loaderFade {
+            to {
+                opacity: 0;
+                visibility: hidden;
+                pointer-events: none;
+                transform: translateZ(0);
+            }
+        }
+
+        /* reveal demo main content after loader (example) */
+        .site {
+            opacity: 0;
+            transform: translateY(12px) scale(.998);
+            transition: opacity .6s ease var(--loader-time), transform .6s ease var(--loader-time);
+        }
+
+        .site.revealed {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* small responsive tweaks */
+        @media (max-width:720px) {
+            .card {
+                padding: 1.2rem
+            }
+
+            .glitch {
+                font-size: clamp(28px, 14vw, 64px)
+            }
+
+            .progress-wrap {
+                width: 92%
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+       FULL SCREEN LOADER
+       Copy/paste this into your site and keep the loader element at the top of the body.
+       It will auto-fade after the set --loader-time (4.6s).
+       ========================= -->
+    <div class="loader" role="status" aria-label="Loading STRIKE">
+        <div class="stars" aria-hidden="true"></div>
+        <div class="grid-floor" aria-hidden="true"></div>
+        <div class="scanlines" aria-hidden="true"></div>
+
+        <div class="rings" aria-hidden="true">
+            <span class="ring r1"></span>
+            <span class="ring r2"></span>
+            <span class="ring r3"></span>
+        </div>
+
+        <div class="sparks" aria-hidden="true"></div>
+
+        <div class="card" aria-hidden="false">
+            <div class="glitch" data-text="STRIKE">STRIKE</div>
+
+            <div class="subtitle" style="margin-top:6px;">
+                <span class="type">INITIALIZING SYSTEM...</span>
+                <span class="cursor" aria-hidden="true"></span>
+            </div>
+
+            <div class="progress-wrap" style="margin-top:14px;">
+                <div class="progress">
+                    <div class="bar" aria-hidden="true"></div>
+                </div>
+
+                <div class="percent" aria-hidden="true">
+                    <span class="p0">0%</span>
+                    <span class="p25">25%</span>
+                    <span class="p50">50%</span>
+                    <span class="p75">75%</span>
+                    <span class="p100">100%</span>
+                </div>
+            </div>
+
+            <div class="meta">BOOT SEQUENCE • SECURE CORE • WAVE-LAYER INIT</div>
+        </div>
+    </div>
+
+    <!-- =========================
+      PLACEHOLDER FOR MAIN SITE
+      Replace or remove this demo content when you integrate the loader.
+      The loader fades out automatically; this block will become visible.
+      ========================= -->
+    <div class="site" id="siteDemo" aria-hidden="false"
+        style="min-height:100vh;display:grid;place-items:center;padding:6rem 2rem;">
+        <div style="max-width:1100px;text-align:center;">
+            <h2 style="font-family:Orbitron, sans-serif;font-size:2rem;color:var(--neon-cyan);margin-bottom:12px;">MAIN
+                SITE (PLACEHOLDER)</h2>
+            <p style="color:rgba(255,255,255,0.8);max-width:56ch;margin:0 auto 18px;">
+                This placeholder demonstrates the automatic transition. When you merge into your site, keep the
+                <code>.loader</code>
+                element at the top of the body. After <strong>~4.6s</strong> it will fade away and the page below will
+                be visible.
+            </p>
+            <p style="opacity:.85;color:rgba(255,255,255,0.75)">Tip: To change the loader duration edit
+                <code>--loader-time</code> in the :root CSS variable.</p>
+        </div>
+    </div>
+
+    <!-- Small script only to toggle the demo site's 'revealed' class AFTER the same delay — you can remove this script
+       when integrating into your site if you will control visibility differently.
+       NOTE: If you insist on 100% NO-JS, remove this <script> block — the loader still hides itself via CSS,
+       but the demo placeholder will remain invisible until you reveal it in your site. -->
+    <script>
+        // This tiny script is ONLY to auto-toggle the demo placeholder visibility.
+        // You may delete this script when you integrate the loader into your real site.
+        (function () {
+            const demo = document.getElementById('siteDemo');
+            const root = getComputedStyle(document.documentElement);
+            const time = root.getPropertyValue('--loader-time') || '4.6s';
+            // convert to ms
+            const ms = Math.max(0, parseFloat(time) * (time.includes('ms') ? 1 : 1000));
+            setTimeout(() => demo.classList.add('revealed'), ms + 120);
+        })();
+    </script>
+
+</body>
+
+</html>

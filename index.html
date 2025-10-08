@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>STRIKE — The Student Revolution (CSS-only)</title>
+
+    <!-- External fonts (Google Fonts) -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons (only CSS usage of fonts, no JS) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+
+
+</head>
+
+<body>
+    <header>
+        <div class="container nav">
+            <div class="brand">
+                <div class="logo">STRIKE</div>
+                <div class="small" style="opacity:.75">The Student Revolution</div>
+            </div>
+
+            <nav>
+                <ul>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#join">Join</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-left">
+                <span class="kicker">New Batch</span>
+                <h1 class="title-gradient">STRIKE — <span class="typing">Where students rise and design strikes
+                        first</span></h1>
+                <p class="lead">A pure HTML & CSS showcase built to push the limits of what you can create without
+                    JavaScript. Smooth gradients, morphing shapes, and attention to detail — show judges you master the
+                    craft.</p>
+
+                <div class="cta">
+                    <a class="btn btn-primary" href="#join"><i class="fa-solid fa-rocket"></i> Join the Mission</a>
+                    <a class="btn btn-ghost" href="#features">See Features</a>
+                </div>
+
+                <div style="margin-top:1.6rem;color:#bfc0d6;opacity:.95">
+                    <strong>Pro tips:</strong> Responsive layout, keyboard focus states, CSS-only toggles, and smooth
+                    animation performance will impress judges.
+                </div>
+            </div>
+
+
+            <br>
+            <!-- main part k niche walla ... -->
+
+            <div class="container hero-right center strike-area">
+                <div class="blob a"></div>
+                <div class="blob b"></div>
+
+                <div class="ring" role="img" aria-label="Rotating strike emblem">
+                    <div class="inner">
+                        <div class="strike-logo center">
+                            STRIKE
+                            <small>Student Edition</small>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <section id="features" class="features container">
+            <h2 style="font-family:Orbitron;font-size:1.4rem;margin-bottom:1rem">Showcase Features</h2>
+            <div class="cards">
+                <article class="card">
+                    <div class="flex" style="justify-content:space-between;align-items:flex-start">
+                        <div>
+                            <div class="icon"><i class="fa-solid fa-bolt"></i></div>
+                        </div>
+                        <div style="text-align:right;opacity:.9">CSS-Only</div>
+                    </div>
+                    <h3>Lightning Strike Animations</h3>
+                    <p>Attention-grabbing flash and strike interactions that appear on hover — all pure CSS. Use for
+                        calls-to-action and highlights.</p>
+                </article>
+
+                <article class="card">
+                    <div class="flex" style="justify-content:space-between;align-items:flex-start">
+                        <div>
+                            <div class="icon"><i class="fa-solid fa-layer-group"></i></div>
+                        </div>
+                        <div style="text-align:right;opacity:.9">Visuals</div>
+                    </div>
+                    <h3>Glowing Gradients & Morphing Blobs</h3>
+                    <p>Background blobs and conic-gradient rings that subtly move to provide depth without overwhelming
+                        content.</p>
+                </article>
+
+                <article class="card">
+                    <div class="flex" style="justify-content:space-between;align-items:flex-start">
+                        <div>
+                            <div class="icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                        </div>
+                        <div style="text-align:right;opacity:.9">Responsive</div>
+                    </div>
+                    <h3>Mobile-first & Accessible</h3>
+                    <p>Layouts adapt from 4 columns down to 1. Focus styles, readable contrast, and keyboard-friendly
+                        interactions included.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="gallery" class="gallery container">
+            <h2 style="font-family:Orbitron;font-size:1.2rem;margin-bottom:1rem">Rebellion Gallery — Student Work</h2>
+            <div class="grid">
+                <div class="student">
+                    <div class="avatar">AS</div>
+                    <div>
+                        <div class="glitch" data-text="Adiv Singh">Adiv Singh</div>
+                        <div class="small">Frontend • Animation • Hackathons</div>
+                    </div>
+                </div>
+                <div class="student">
+                    <div class="avatar">RK</div>
+                    <div>
+                        <div class="glitch" data-text="Riya K">Riya K</div>
+                        <div class="small">UI Designer • 3D Text</div>
+                    </div>
+                </div>
+                <div class="student">
+                    <div class="avatar">PM</div>
+                    <div>
+                        <div class="glitch" data-text="Priyank M">Priyank M</div>
+                        <div class="small">CSS Art • Experiments</div>
+                    </div>
+                </div>
+                <div class="student">
+                    <div class="avatar">LD</div>
+                    <div>
+                        <div class="glitch" data-text="Lina D">Lina D</div>
+                        <div class="small">Motion • Prototyping</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="join" class="container" style="padding:3rem 0">
+            <div style="display:grid;grid-template-columns:1fr 360px;gap:1.2rem;align-items:start">
+                <div>
+                    <h2 style="font-family:Orbitron;font-size:1.4rem">Join the STRIKE</h2>
+                    <p class="small" style="margin-top:.6rem;max-width:54ch">Want to submit this as your hackathon
+                        entry? Copy the HTML file, replace content with your name/team, and host on Netlify/GitHub
+                        Pages. Judges love a strong visual story — add a short video link in the footer if allowed.</p>
+
+                    <ul style="margin-top:1rem;list-style:disc;padding-left:18px;color:#cfd0e5">
+                        <li>Keep animations smooth (prefers transform & opacity)</li>
+                        <li>Use accessible color contrast for body text</li>
+                        <li>Include one CSS-only interaction that solves a UI problem (toggle, modal)</li>
+                    </ul>
+                </div>
+
+                <aside
+                    style="background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:1.2rem;border-radius:12px">
+                    <h3 style="margin-bottom:.6rem">Quick Export</h3>
+                    <p class="small">This is a single HTML file. It uses Google Fonts and Font Awesome (CSS). No
+                        JavaScript is required.</p>
+                    <div style="margin-top:1rem">
+                        <a class="btn btn-primary" href="#" onclick="return false">Download HTML</a>
+                        <div class="small" style="margin-top:.6rem;opacity:.8">(Right-click → Save as... or copy-paste
+                            into an index.html file)</div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <footer class="container">
+            <div class="flex" style="justify-content:space-between;align-items:center">
+                <div>
+                    <div class="logo">STRIKE</div>
+                    <div class="small" style="margin-top:.6rem">Built with ♥ — Pure HTML & CSS</div>
+                </div>
+                <div class="small">Made by <strong>Adiv Singh</strong> • Good luck in the hackathon</div>
+            </div>
+        </footer>
+    </main>
+
+</body>
+
+</html>

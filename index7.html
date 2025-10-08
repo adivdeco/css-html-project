@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>STRIKE | System Loading...</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            overflow: hidden;
+            background: radial-gradient(circle at center, #000, #02010f);
+            font-family: 'Orbitron', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            color: #0ff;
+        }
+
+        /* === Animated Grid Background === */
+        .grid {
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(90deg,
+                    rgba(0, 255, 255, 0.07) 0 1px,
+                    transparent 1px 100px),
+                repeating-linear-gradient(0deg,
+                    rgba(255, 0, 255, 0.07) 0 1px,
+                    transparent 1px 100px);
+            animation: gridmove 8s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes gridmove {
+            from {
+                background-position: 0 0;
+            }
+
+            to {
+                background-position: 100px 100px;
+            }
+        }
+
+        /* === Loader Container === */
+        .loader {
+            text-align: center;
+            z-index: 1;
+            animation: fadeOut 4s ease 4s forwards;
+        }
+
+        /* === Glitch Title === */
+        .glitch {
+            position: relative;
+            font-size: 3.5rem;
+            color: #0ff;
+            text-shadow: 0 0 20px #0ff, 0 0 40px #0ff;
+            animation: glitch 1.5s infinite;
+            letter-spacing: 4px;
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0.8;
+        }
+
+        .glitch::before {
+            color: magenta;
+            animation: glitchTop 1.5s infinite;
+        }
+
+        .glitch::after {
+            color: cyan;
+            animation: glitchBottom 1.5s infinite;
+        }
+
+        @keyframes glitchTop {
+            0% {
+                transform: translate(0);
+            }
+
+            20% {
+                transform: translate(-2px, -2px);
+            }
+
+            40% {
+                transform: translate(-2px, 2px);
+            }
+
+            60% {
+                transform: translate(2px, -1px);
+            }
+
+            80% {
+                transform: translate(1px, 1px);
+            }
+
+            100% {
+                transform: translate(0);
+            }
+        }
+
+        @keyframes glitchBottom {
+            0% {
+                transform: translate(0);
+            }
+
+            20% {
+                transform: translate(2px, 2px);
+            }
+
+            40% {
+                transform: translate(2px, -2px);
+            }
+
+            60% {
+                transform: translate(-1px, 2px);
+            }
+
+            80% {
+                transform: translate(-2px, -1px);
+            }
+
+            100% {
+                transform: translate(0);
+            }
+        }
+
+        /* === Subtitle === */
+        .subtitle {
+            color: #ff00aa;
+            margin-top: 15px;
+            text-shadow: 0 0 10px #ff00aa;
+            letter-spacing: 2px;
+            animation: flicker 2s infinite alternate;
+        }
+
+        @keyframes flicker {
+
+            0%,
+            18%,
+            22%,
+            25%,
+            53%,
+            57%,
+            100% {
+                opacity: 1;
+            }
+
+            20%,
+            24%,
+            55% {
+                opacity: 0.3;
+            }
+        }
+
+        /* === Scan Line === */
+        .scan-line {
+            width: 300px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #0ff, transparent);
+            margin: 25px auto 0;
+            animation: scan 1.3s linear infinite;
+            opacity: 0.9;
+        }
+
+        @keyframes scan {
+            0% {
+                transform: translateX(-100%);
+                opacity: 0.2;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateX(100%);
+                opacity: 0.2;
+            }
+        }
+
+        /* === Glowing Ring === */
+        .ring {
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 50px #0ff;
+            animation: pulse 3s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.6;
+            }
+
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 0.2;
+            }
+        }
+
+        /* === Fade Out (to show main site later) === */
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        /* === Scanline Overlay (CRT feel) === */
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(rgba(255, 255, 255, 0.03) 0px,
+                    rgba(255, 255, 255, 0.03) 1px,
+                    transparent 1px,
+                    transparent 3px);
+            pointer-events: none;
+            animation: flickerOverlay 2s infinite;
+        }
+
+        @keyframes flickerOverlay {
+
+            0%,
+            100% {
+                opacity: 0.3;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grid"></div>
+    <div class="overlay"></div>
+    <div class="ring"></div>
+
+    <div class="loader">
+        <h1 class="glitch" data-text="STRIKE">STRIKE</h1>
+        <div class="subtitle">⚡ SYSTEM INITIALIZING ⚡</div>
+        <div class="scan-line"></div>
+    </div>
+</body>
+
+</html>
