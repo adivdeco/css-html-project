@@ -10,9 +10,9 @@
     --card: #0e0b14bb;
     --accent-1: #00ffd5;
     /* cyan */
-    --accent-2: #ff2d95;
+    --accent-3: #ff2d95;
     /* magenta */
-    --accent-3: #ffb86b;
+    --accent-2: #ffb86b;
     /* warm */
     --glass: rgba(255, 255, 255, 0.06);
     --glass-2: rgba(255, 255, 255, 0.03);
@@ -85,6 +85,8 @@ header {
     color: transparent;
     background: linear-gradient(90deg, var(--accent-2), var(--accent-1));
     -webkit-background-clip: text;
+    background-clip: text;
+    background-clip: text;
     text-shadow: 0 6px 30px rgba(0, 0, 0, 0.6)
 }
 
@@ -140,20 +142,133 @@ nav a:hover {
 
 .kicker {
     display: inline-block;
-    padding: 6px 12px;
+    padding: 6px 8px;
+    font-family: 'Orbitron';
     border-radius: 999px;
-    background: linear-gradient(90deg, var(--accent-2), var(--accent-1));
-    color: #07040a;
-    font-weight: 700;
-    font-size: .85rem
+    background: linear-gradient(135deg,
+            rgba(39, 35, 35, 0.9) 0%,
+            rgba(20, 18, 18, 0.95) 50%,
+            rgba(39, 35, 35, 0.9) 100%);
+    color: #3ff117;
+    font-weight: 800;
+    font-size: 0.55rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    position: relative;
+    border: 1px solid rgba(63, 241, 23, 0.3);
+    box-shadow:
+        0 0 20px rgba(63, 241, 23, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 4px 12px rgba(0, 0, 0, 0.7);
+    text-shadow:
+        0 0 8px #3ff117,
+        0 0 16px #3ff117,
+        0 0 24px #3ff117;
+    backdrop-filter: blur(10px);
+    animation: pulse-glow 2s ease-in-out infinite alternate;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
 }
+
+.kicker::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(63, 241, 23, 0.2),
+            transparent);
+    transition: left 0.6s ease;
+}
+
+.kicker:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        0 0 30px rgba(63, 241, 23, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        0 6px 20px rgba(0, 0, 0, 0.8);
+    border-color: rgba(63, 241, 23, 0.6);
+    animation-duration: 0.5s;
+}
+
+.kicker:hover::before {
+    left: 100%;
+}
+
+.kicker:active {
+    transform: translateY(0);
+    box-shadow:
+        0 0 15px rgba(63, 241, 23, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05),
+        0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+@keyframes pulse-glow {
+    0% {
+        box-shadow:
+            0 0 20px rgba(63, 241, 23, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1),
+            0 4px 12px rgba(0, 0, 0, 0.7);
+        text-shadow:
+            0 0 8px #3ff117,
+            0 0 16px #3ff117,
+            0 0 24px #3ff117;
+    }
+
+    100% {
+        box-shadow:
+            0 0 25px rgba(63, 241, 23, 0.6),
+            inset 0 1px 0 rgba(255, 255, 255, 0.15),
+            0 4px 12px rgba(0, 0, 0, 0.7);
+        text-shadow:
+            0 0 12px #3ff117,
+            0 0 20px #3ff117,
+            0 0 30px #3ff117;
+    }
+}
+
+/* Optional: Add particle effect for extra hardcore vibe */
+.kicker::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 4px;
+    height: 4px;
+    background: #3ff117;
+    border-radius: 50%;
+    opacity: 0;
+    box-shadow:
+        0 0 10px 2px #3ff117,
+        0 0 20px 4px #3ff117;
+    animation: particle-float 3s ease-in-out infinite;
+}
+
+@keyframes particle-float {
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+    }
+
+    50% {
+        transform: translate(-50%, -60%) scale(1);
+        opacity: 0.7;
+    }
+}
+
+
 
 h1 {
     font-family: 'Orbitron';
     font-weight: 900;
     /* font-size: clamp(2.4rem, 6vw, 2.2rem); */
     font-size: 3.2rem;
-    line-height: 0.9;
+    line-height: 1.1;
     margin-top: 1rem;
     letter-spacing: 2px
 }
@@ -162,6 +277,7 @@ h1 {
     background: conic-gradient(from 90deg, var(--accent-1), var(--accent-2), var(--accent-3));
     background-size: 300% 300%;
     -webkit-background-clip: text;
+    background-clip: text;
     color: transparent;
     animation: slide-grad 6s linear infinite
 }
@@ -183,7 +299,7 @@ h1 {
 p.lead {
     margin-top: 1rem;
     color: #d7d7e0;
-    max-width: 46ch
+    max-width: 59ch
 }
 
 /* CSS-only typing reveal */
@@ -201,7 +317,7 @@ p.lead {
     }
 
     to {
-        width: 100%
+        width: 90%
     }
 }
 
@@ -210,6 +326,109 @@ p.lead {
         border-color: transparent
     }
 }
+
+/* Reveal Effect 1: Slide Up with Glow */
+.reveal-1 {
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+}
+
+.reveal-1 .text {
+    display: inline-block;
+    transform: translateY(100%);
+    opacity: 0;
+    animation: slide-up-reveal 1.2s cubic-bezier(0.23, 1, 0.32, 1) 0.5s forwards;
+}
+
+@keyframes slide-up-reveal {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+        text-shadow:
+            0 0px 0 rgba(96, 234, 46, 0.95),
+            0 0px 10px rgb(45, 97, 41),
+            0 0 5px rgba(63, 241, 23, 0.18);
+        -webkit-background-clip: text;
+        background-clip: text;
+        background-clip: text;
+        color: transparent;
+        filter: drop-shadow(0 4px 6px rgba(85, 235, 11, 0.5));
+    }
+}
+
+
+.reveal-3 {
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+}
+
+.reveal-3 .text {
+    display: inline-block;
+    opacity: 0;
+    /* reveal fade + keep the animated gradient running */
+    animation: fade-in 0.8s ease-out 0.5s forwards,
+        slide-grad 6s linear infinite;
+    /* Use the same gradient as the main title and allow the slide-grad animation to run */
+    background: conic-gradient(from 90deg, var(--accent-1), var(--accent-2), var(--accent-3));
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    position: relative;
+    z-index: 2;
+}
+
+.reveal-3::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+    animation: shimmer 2s ease-in-out 0.1s infinite alternate;
+    /* place shimmer above the background but blend so the clipped gradient text remains visible */
+    z-index: 3;
+    mix-blend-mode: var(--glass);
+}
+
+@keyframes shimmer {
+    0% {
+        left: -100%;
+    }
+
+    50% {
+        left: 100%;
+    }
+
+    100% {
+        left: 100%;
+
+    }
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+
+
+    }
+}
+
+
+
+/* end of main pg txt css  */
 
 .cta {
     margin-top: 1.8rem;
@@ -534,6 +753,7 @@ p.lead {
     z-index: 2;
     background: linear-gradient(135deg, var(--accent-1), var(--accent-2), var(--accent-3));
     -webkit-background-clip: text;
+    background-clip: text;
     background-clip: text;
     color: transparent;
     animation: logo-glow 4s ease-in-out infinite alternate;
