@@ -1769,7 +1769,7 @@ section.features {
     content: '';
     position: absolute;
     inset: -30%;
-    background: conic-gradient(from 0deg, var(--accent-1), transparent, var(--accent-2));
+    background: conic-gradient(from 0deg, var(--accent-1), transparent, var(--accent-3));
     opacity: .06;
     transform: translateY(20%);
     transition: all .6s ease
@@ -2331,5 +2331,28 @@ img:nth-of-type(2) {
 @keyframes fadeIn {
     to {
         opacity: 1;
+    }
+}
+
+/* 3d model */
+model-viewer {
+    /* background-color: #111; */
+    border-radius: 12px;
+    display: block;
+    /* margin: auto; */
+    z-index: 5;
+    margin-right: 30px;
+    animation: modelAnimation 2s ease-in-out normal alternate infinite;
+}
+
+@keyframes modelAnimation {
+    0% {
+        transform: scale(0);
+        rotate: 0deg;
+    }
+
+    100% {
+        transform: scale(1);
+        rotate: 360deg;
     }
 }
