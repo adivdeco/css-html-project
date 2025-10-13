@@ -2943,6 +2943,8 @@ section.features h2::after {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     gap: 2.5rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
     margin-bottom: 6rem;
 }
 
@@ -3356,17 +3358,19 @@ section.features h2::after {
     animation-delay: 2s;
 }
 
-
+/* yha p se kal */
 /* Contact Section */
 .contact-section {
     padding-bottom: 6rem;
     position: relative;
+    padding-left: 3rem;
+    padding-right: 3rem;
 }
 
 .contact-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 1rem;
     align-items: start;
 }
 
@@ -3379,7 +3383,7 @@ section.features h2::after {
 
 .contact-info {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 2rem;
 }
 
@@ -3404,7 +3408,7 @@ section.features h2::after {
 .contact-icon {
     width: 60px;
     height: 60px;
-    background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+    background: linear-gradient(135deg, var(--accent-1), var(--accent-3));
     border-radius: 15px;
     display: flex;
     align-items: center;
@@ -3435,7 +3439,8 @@ section.features h2::after {
 
 /* Footer */
 .footer {
-    padding: 4rem 0 2rem;
+    margin-top: 3rem;
+    padding: 4rem;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
     position: relative;
 }
@@ -3478,9 +3483,9 @@ section.features h2::after {
 .footer-brand .logo {
     font-family: 'Orbitron', sans-serif;
     font-weight: 900;
-    font-size: 2rem;
-    letter-spacing: 3px;
-    background: linear-gradient(135deg, var(--accent-1), var(--accent-2), var(--accent-3));
+    /* font-size: 2rem; */
+    /* letter-spacing: 3px; */
+    /* background: linear-gradient(135deg, var(--accent-1), var(--accent-2), var(--accent-3)); */
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -3533,14 +3538,36 @@ section.features h2::after {
     left: 100%;
 }
 
-.social-link:hover {
-    background: var(--accent-1);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0, 255, 213, 0.3);
+/* per-icon hover colors */
+.social-link.twitter:hover {
+    background: #1DA1F2;
+    color: #fff;
+}
+
+/* Twitter */
+.social-link.github:hover {
+    background: #171515;
+    color: #fff;
+}
+
+/* GitHub */
+.social-link.discord:hover {
+    background: #7289DA;
+    color: #fff;
+}
+
+/* Discord */
+.social-link.linkedin:hover {
+    background: #0077B5;
+    color: #fff;
 }
 
 .social-link:hover i {
     color: #031018;
+}
+
+.social-link.github:hover i {
+    color: #fff;
 }
 
 .social-link i {
@@ -3610,7 +3637,9 @@ section.features h2::after {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: var(--accent-1);
+    font-size: 0.7rem;
+    color: #cfcfe0;
+    font-family: 'Changa';
     font-weight: 600;
 }
 
@@ -3627,9 +3656,11 @@ section.features h2::after {
     }
 
     50% {
-        transform: scale(1.2);
+        transform: scale(1.8);
     }
 }
+
+/* end footer */
 
 /* Floating Animations */
 @keyframes float {
