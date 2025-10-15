@@ -663,6 +663,13 @@ p.lead {
 }
 
 @media (max-width: 480px) {
+    .cta {
+        margin-top: 6rem;
+        margin-left: -1.6rem;
+    }
+}
+
+@media (max-width: 480px) {
     .cta .btn {
 
         padding: 8px 15px;
@@ -888,6 +895,16 @@ p.lead {
     line-height: 1.6;
 }
 
+@media (max-width: 480px) {
+    .proTip {
+        font-size: 0.8rem;
+        max-width: 43ch;
+        margin-bottom: 8rem;
+        margin-top: 3rem;
+
+
+    }
+}
 
 /* btn end */
 
@@ -1853,6 +1870,13 @@ section.features h2 {
     position: relative;
 }
 
+@media (max-width: 480px) {
+    section.features h2 {
+        font-size: 1.9rem;
+        margin-bottom: 4rem;
+    }
+}
+
 section.features h2::after {
     content: '';
     position: absolute;
@@ -2020,6 +2044,20 @@ section.features h2::after {
     margin-bottom: 0rem;
     transition: all 0.6s ease;
     text-shadow: 0 0 20px rgba(0, 255, 213, 0.5);
+}
+
+@media (max-width: 480px) {
+    .image-title {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .image-subtitle {
+        font-size: 0.5rem;
+        color: #dbe;
+        margin-top: 0.3rem;
+    }
 }
 
 .image-subtitle {
@@ -2384,6 +2422,14 @@ section.features h2::after {
     position: relative;
     text-transform: uppercase;
     letter-spacing: 3px;
+}
+
+@media (max-width: 480px) {
+    .gallery h2 {
+        font-size: 1.7rem;
+        margin-top: -3rem;
+        margin-bottom: 3rem;
+    }
 }
 
 .gallery h2::before {
@@ -2959,6 +3005,12 @@ section.features h2::after {
     display: inline-block;
 }
 
+@media (max-width: 480px) {
+    .section-title {
+        font-size: 1.7rem;
+    }
+}
+
 .section-title::after {
     content: '';
     position: absolute;
@@ -2977,6 +3029,13 @@ section.features h2::after {
     max-width: 600px;
     margin: 0 auto;
     line-height: 1.6;
+}
+
+@media (max-width: 480px) {
+    .section-subtitle {
+        font-size: 0.9rem;
+        padding: 0 1rem;
+    }
 }
 
 /* Enhanced Instructors Grid */
@@ -4187,6 +4246,12 @@ model-viewer {
     z-index: 5;
     margin-right: 30px;
     animation: modelAnimation 2s ease-in-out normal alternate infinite;
+}
+
+@media (max-width: 480px) {
+    model-viewer {
+        display: none;
+    }
 }
 
 @keyframes modelAnimation {
