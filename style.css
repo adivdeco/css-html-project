@@ -80,6 +80,12 @@ header {
     gap: .8rem
 }
 
+@media (max-width: 480px) {
+    .brand .small {
+        display: none;
+    }
+}
+
 .logo {
     font-family: 'Orbitron';
     font-weight: 900;
@@ -99,6 +105,13 @@ header {
     stroke-dasharray: 430;
     stroke-dashoffset: 430;
     animation: AllAnimations 5s ease-in-out alternate infinite;
+}
+
+@media (max-width: 480px) {
+    .brand svg {
+        width: 140px;
+        height: 60px
+    }
 }
 
 .svg-title svg path ::after {
@@ -269,7 +282,7 @@ nav a.active {
 @media (max-width: 768px) {
     .menu-label {
         display: flex;
-        margin-right: -120px;
+        margin-right: -155px;
     }
 
     nav ul {
@@ -462,6 +475,12 @@ h1 {
     letter-spacing: 2px
 }
 
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.3rem;
+    }
+}
+
 .title-gradient {
     background: conic-gradient(from 90deg, var(--accent-1), var(--accent-2), var(--accent-3));
     background-size: 300% 300%;
@@ -493,6 +512,18 @@ p.lead {
     font-size: 1.1rem;
     font-family: 'Changa';
     font-weight: 300;
+}
+
+@media (max-width: 480px) {
+    p.lead {
+        font-size: 0.8rem;
+        margin-top: 1rem;
+        color: rgba(215, 215, 224, 0.7);
+        max-width: 37ch;
+        line-height: 15px;
+        font-family: 'Changa';
+        font-weight: 300;
+    }
 }
 
 /* CSS-only typing reveal */
@@ -629,6 +660,15 @@ p.lead {
     gap: 1.5rem;
     flex-wrap: wrap;
     /* justify-content: center; */
+}
+
+@media (max-width: 480px) {
+    .cta .btn {
+
+        padding: 8px 15px;
+        font-size: 0.7rem;
+        letter-spacing: 0.5px;
+    }
 }
 
 .btn {
@@ -847,6 +887,7 @@ p.lead {
     margin: 0 auto;
     line-height: 1.6;
 }
+
 
 /* btn end */
 
@@ -3805,6 +3846,14 @@ button:focus {
 
 }
 
+@media (max-width: 768px) {
+    .svg-title svg {
+        width: 350px;
+        height: auto;
+        margin-bottom: 2rem;
+    }
+}
+
 @keyframes AllAnimation {
     0% {
         stroke-dashoffset: 430;
@@ -3889,19 +3938,84 @@ img {
     opacity: 1;
 }
 
+@media (max-width: 480px) {
+    img {
+        width: 90%;
+        height: auto;
+        /* display: none; */
+    }
+}
+
+
+
+@media (max-width: 480px) {
+    .pg1 img:nth-of-type(1) {
+        right: -250px;
+        bottom: 200px;
+        opacity: 0;
+        animation: moveLeftRES 4.8s cubic-bezier(.2, .9, .2, 1) 0.2s forwards;
+    }
+}
+
+
+@keyframes moveLeftRES {
+    0% {
+        right: -250px;
+        bottom: 200px;
+        opacity: 0;
+        transform: translateZ(0);
+    }
+
+    100% {
+        right: -120px;
+        bottom: 300px;
+        opacity: 1;
+        transform: translateZ(0);
+    }
+
+
+}
+
 img:nth-of-type(1) {
     right: -650px;
     bottom: -480px;
+    opacity: 0;
     /* z-index: -1; */
-    right: 10px;
-    bottom: 50px;
+    /* right: 10px;
+    bottom: 50px; */
     animation: moveLeft 4.8s cubic-bezier(.2, .9, .2, 1) 0.2s forwards;
+}
+
+@media (max-width: 480px) {
+    .pg1 img:nth-of-type(2) {
+        left: -120px;
+        bottom: 50px;
+        opacity: 0;
+        transform: rotate(-90deg);
+        transform-origin: center center;
+        animation: moveRightRES 5.8s cubic-bezier(.2, .9, .2, 1) 0.2s forwards;
+    }
+}
+
+@keyframes moveRightRES {
+    0% {
+        left: -120px;
+        bottom: 50px;
+        opacity: 0;
+    }
+
+    100% {
+        left: -140px;
+        bottom: 420px;
+        opacity: 1;
+    }
 }
 
 img:nth-of-type(2) {
     left: 30px;
     bottom: -580px;
     /* z-index: 1; */
+    opacity: 0;
     transform: rotate(-90deg);
     transform-origin: center center;
     animation: moveRight 5.2s ease-out 0.5s forwards;
@@ -4022,17 +4136,7 @@ img:nth-of-type(2) {
     animation-delay: 6s;
 }
 
-/* A loader can stay centered while pg1 scrolls up */
-/* .loader {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 0%;
-    pointer-events: none;
-    transform: translateZ(0);
-} */
+
 .loader {
     position: relative;
     width: 100%;
@@ -4065,6 +4169,7 @@ img:nth-of-type(2) {
     opacity: 0;
     animation: fadeIn 0.5s ease-in forwards;
     animation-delay: 6.5s;
+    overflow: hidden;
 }
 
 @keyframes fadeIn {
